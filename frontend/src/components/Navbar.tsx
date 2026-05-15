@@ -55,7 +55,7 @@ export default function Navbar() {
         <NavItem active={hash === "#articles"} href="#articles">
           Articles
         </NavItem>
-        <NavItem active={hash === "#contact"} href="#contact">
+        <NavItem active={hash === "#connect"} href="#connect">
           Connect
         </NavItem>
       </div>

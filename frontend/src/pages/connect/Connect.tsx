@@ -136,7 +136,8 @@ export default function Connect() {
                 <div className="flex justify-end">
                     <button
                     type="submit"
-                    className="mt-1 w-32 rounded-xl bg-emerald-600 py-3 text-sm font-semibold text-white transition-[background-color,transform] hover:bg-emerald-700 active:scale-[0.98]"
+                    className="mt-1 w-32 rounded-xl bg-emerald-600 py-3 text-sm font-semibold text-white transition-[background-color,transform] hover:bg-emerald-700 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
+                    disabled={isLoading}
                     >
                     { isLoading ? "Sending..." : "Connect" }
                     </button>

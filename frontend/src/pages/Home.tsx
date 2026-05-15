@@ -92,18 +92,27 @@ type RecentWork = {
   key: string;
   name: string;
   type: string;
+  link: string;
 }
 
 const recentWork: RecentWork[] = [
   {
     key: "jobsBoard",
     name: "Jobs Board",
-    type: "Project"
+    type: "Project",
+    link: "https://jobs-board-tracking.vercel.app/"
   },
   {
     key: "ShieldX",
     name: "ShieldX",
-    type: "Project"
+    type: "Project",
+    link: "https://shieldx.vercel.app/"
+  },
+  {
+    key: "uiconsistency",
+    name: "UI Consistency",
+    type: "Article",
+    link: "https://medium.com/@omkar.frontenddev/ui-consistency-c7b52377b691"
   }
 ]
 
@@ -147,7 +156,7 @@ export default function Home() {
                     recentWork.map((work) => (
                       <div key={work.key} data-cursor="pointer" className="flex items-center p-3 border border-black/10 rounded-xl 
                       justify-between gap-3 w-full cursor-pointer hover:border-emerald-600 
-                      transition-colors duration-500">
+                      transition-colors duration-500" onClick={() => window.open(work.link, "_blank")}>
                         <p className="text-sm font-medium">{work.name}</p>
                         <p className="text-xs text-black/50">{work.type}</p>
                       </div>
