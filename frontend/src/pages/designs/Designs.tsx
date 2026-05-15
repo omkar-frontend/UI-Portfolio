@@ -2,7 +2,15 @@ import HoverTitle from "../../components/HoverTitle";
 import UIComponents from "../../assets/images/components.png";
 import Dashboard from "../../assets/images/dashboard.png";
 
-const designs = [
+type Design = {
+    key: string;
+    name: string;
+    description: string;
+    image: string;
+    link: string;
+}
+
+const designs: Design[] = [
     {
         key: "design1",
         name: "UI Components",
@@ -42,7 +50,7 @@ export default function Designs() {
             {/* Cards */}
             <div className="grid xl:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-5">
                 {
-                    designs.map((design) => (
+                    designs.map((design: Design) => (
                         <div key={design.key} className="rounded-2xl p-4 flex flex-col gap-3 group" style={{ backgroundColor: designColors[design.key].bg }} onClick={() => window.open(design.link, "_blank")} data-cursor="pointer">
                             <div className="flex flex-col justify-end items-end gap-1">
                                 <HoverTitle
