@@ -1,6 +1,6 @@
 import HoverTitle from "../../components/HoverTitle";
 import JobsBoard from "../../assets/images/jobsBoard.png"
-import ShieldX from "../../assets/images/shieldX.png"
+import ShieldX from "../../assets/images/shieldx.png"
 
 type Project = {
     key: string;
