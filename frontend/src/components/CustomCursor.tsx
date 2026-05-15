@@ -1,0 +1,80 @@
+import { useEffect, useRef, useState } from "react";
+
+const LERP = 0.18;
+
+export default function CustomCursor() {
+  const cursorRef = useRef<HTMLDivElement>(null);
+  const position = useRef({ x: 0, y: 0 });
+  const target = useRef({ x: 0, y: 0 });
+  const frame = useRef<number>(0);
+  const [visible, setVisible] = useState(false);
+  const [interactive, setInteractive] = useState(false);
+
+  useEffect(() => {
+    const coarse = window.matchMedia("(pointer: coarse)").matches;
+    if (coarse) return;
+
+    document.documentElement.classList.add("custom-cursor-active");
+
+    const onMove = (e: MouseEvent) => {
+      target.current = { x: e.clientX, y: e.clientY };
+      setVisible(true);
+
+      const el = document.elementFromPoint(e.clientX, e.clientY);
+      const isInteractive = Boolean(
+        el?.closest("a, button, [role='button'], input, textarea, select, label, [data-cursor='pointer']")
+      );
+      setInteractive(isInteractive);
+    };
+
+    const onLeave = () => setVisible(false);
+
+    const animate = () => {
+      position.current.x += (target.current.x - position.current.x) * LERP;
+      position.current.y += (target.current.y - position.current.y) * LERP;
+
+      if (cursorRef.current) {
+        cursorRef.current.style.transform = `translate3d(${position.current.x}px, ${position.current.y}px, 0)`;
+      }
+
+      frame.current = requestAnimationFrame(animate);
+    };
+
+    window.addEventListener("mousemove", onMove);
+    document.addEventListener("mouseleave", onLeave);
+    frame.current = requestAnimationFrame(animate);
+
+    return () => {
+      document.documentElement.classList.remove("custom-cursor-active");
+      window.removeEventListener("mousemove", onMove);
+      document.removeEventListener("mouseleave", onLeave);
+      cancelAnimationFrame(frame.current);
+    };
+  }, []);
+
+  return (
+    <div
+      ref={cursorRef}
+      aria-hidden
+      className={`custom-cursor ${visible ? "custom-cursor--visible" : ""} ${interactive ? "custom-cursor--interactive" : ""}`}
+    >
+      <svg
+        className="custom-cursor__pointer"
+        width="14"
+        height="18"
+        viewBox="0 0 12 16"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M1 1L1 13.5L4.2 10.3L6.5 15.5L8.5 14.5L6.2 9.3L10.5 9.3L1 1Z"
+          fill="currentColor"
+          stroke="white"
+          strokeWidth="1.2"
+          strokeLinejoin="round"
+        />
+      </svg>
+      {/* <p className="custom-cursor__label">Omkar</p> */}
+    </div>
+  );
+}
