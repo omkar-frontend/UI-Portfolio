@@ -2,13 +2,28 @@ import HoverTitle from "../../components/HoverTitle";
 import UIComponents from "../../assets/images/components.png";
 import Dashboard from "../../assets/images/dashboard.png";
 
+const designColors = {
+    design1: {
+        bg: "#008236",
+        text: "#FFFFFF",
+        border: "#FFFFFF",
+    },
+    design2: {
+        bg: "#f54a00",
+        text: "#FFFFFF",
+        border: "#FFFFFF",
+    },
+} as const;
+
+type DesignKey = keyof typeof designColors;
+
 type Design = {
-    key: string;
+    key: DesignKey;
     name: string;
     description: string;
     image: string;
     link: string;
-}
+};
 
 const designs: Design[] = [
     {
@@ -25,20 +40,7 @@ const designs: Design[] = [
         image: Dashboard,
         link: "https://www.figma.com/proto/fNaQkhJlB3tpBOInyLIgx0/Dashboards?node-id=1-2&t=O4qiwBoKtITIoszf-1",
     },
-]
-
-const designColors = {
-    design1: {
-        bg: "#008236",
-        text: "#FFFFFF",
-        border: "#FFFFFF",
-    },
-    design2: {
-        bg: "#f54a00",
-        text: "#FFFFFF",
-        border: "#FFFFFF",
-    },
-}
+];
 
 export default function Designs() {
     return (
@@ -50,7 +52,7 @@ export default function Designs() {
             {/* Cards */}
             <div className="grid xl:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-5">
                 {
-                    designs.map((design: Design) => (
+                    designs.map((design) => (
                         <div key={design.key} className="rounded-2xl p-4 flex flex-col gap-3 group" style={{ backgroundColor: designColors[design.key].bg }} onClick={() => window.open(design.link, "_blank")} data-cursor="pointer">
                             <div className="flex flex-col justify-end items-end gap-1">
                                 <HoverTitle
