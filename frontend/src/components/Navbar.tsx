@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
-import { ChevronLeft } from "lucide-react";
+import { Menu } from "lucide-react";
 import { contactLinks } from "../constants/contactLinks";
 
 function ActiveDot({ active }: { active: boolean }) {
@@ -88,29 +88,29 @@ export default function Navbar() {
           onClick={toggleMenu}
           aria-expanded={isMenuOpen}
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          className="p-1 bg-black/10 rounded-lg"
+          className="p-1.5 bg-black/10 rounded-lg"
         >
-          <ChevronLeft
-            className={`w-6 h-6 transition-transform duration-300 text-neutral-800 ${isMenuOpen ? "scale-[-1]" : ""}`}
+          <Menu
+            className={`w-5 h-5 text-neutral-700`}
           />
         </button>
       </div>
 
       <div
-        className={`fixed inset-0 z-100 sm:hidden transition-opacity duration-300 max-h-[calc(100dvh)] overflow-hidden ${isMenuOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"}`}
+        className={`fixed inset-0 z-100 sm:hidden transition-opacity duration-500 max-h-[calc(100dvh)] overflow-hidden ${isMenuOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"}`}
         aria-hidden={!isMenuOpen}
       >
         <div
-          className={`absolute inset-0 flex w-full flex-col bg-bg px-5 transition-transform duration-300 ease-out ${isMenuOpen ? "translate-x-0" : "translate-x-full"}`}
+          className={`absolute inset-0 flex w-full flex-col bg-bg px-5`}
         >
           <div className="flex justify-end py-3">
             <button
               type="button"
               onClick={closeMenu}
               aria-label="Close menu"
-              className="p-1 bg-black/10 rounded-lg"
+              className="p-1.5 bg-black/10 rounded-lg"
             >
-              <ChevronLeft className="w-6 h-6 scale-[-1] text-neutral-800" />
+              <Menu className="w-5 h-5 text-neutral-700" />
             </button>
           </div>
 
