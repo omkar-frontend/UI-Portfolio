@@ -97,7 +97,7 @@ export default function Navbar() {
       </div>
 
       <div
-        className={`fixed inset-0 z-50 sm:hidden transition-opacity duration-300 ${isMenuOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"}`}
+        className={`fixed inset-0 z-100 sm:hidden transition-opacity duration-300 max-h-[calc(100dvh)] overflow-hidden ${isMenuOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"}`}
         aria-hidden={!isMenuOpen}
       >
         <div
@@ -147,7 +147,7 @@ export default function Navbar() {
             })}
           </nav>
 
-          <div className="mt-auto flex gap-4 pt-10">
+          <div className="mt-auto mb-20 flex gap-4 pt-10">
             {contactLinks.map((link) => (
               <a
                 key={link.label}
