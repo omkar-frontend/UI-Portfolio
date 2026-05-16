@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { contactLinks } from "../../constants/contactLinks";
+import toast from 'react-hot-toast';
 
 type ConnectForm = {
   name: string;
@@ -15,26 +16,50 @@ export default function Connect() {
     message: "",
   });
   const [isLoading, setIsLoading] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const successTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  function clearSuccessTimeout() {
+    if (successTimeoutRef.current !== null) {
+      clearTimeout(successTimeoutRef.current);
+      successTimeoutRef.current = null;
+    }
+  }
+
+  useEffect(() => {
+    return () => clearSuccessTimeout();
+  }, []);
 
   function updateField<K extends keyof ConnectForm>(key: K, value: ConnectForm[K]) {
     setForm((prev) => ({ ...prev, [key]: value }));
   }
 
+
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    clearSuccessTimeout();
     setIsLoading(true);
     // Data is in `form`; wire to backend here later.
     try {
         const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/connection`, form);
         console.log(response.data);
-    } catch (error) {
-        console.error(error);
-    } finally {
+        toast.success("Message sent successfully", 
+            {position: "bottom-right", className: "bg-emerald-100! border! border-emerald-600! text-emerald-600! px-4! py-3! rounded-xl! text-sm! font-medium!"});
+        setIsSuccess(true);
         setForm({
             name: "",
             email: "",
             message: "",
         });
+        successTimeoutRef.current = setTimeout(() => {
+            setIsSuccess(false);
+            successTimeoutRef.current = null;
+        }, 10000);
+    } catch (error) {
+        console.error(error);
+        toast.error("Failed to send message", 
+            {position: "bottom-right", className: "bg-red-100! border! border-red-600! text-red-600! px-4! py-3! rounded-xl! text-sm! font-medium!"});
+    } finally {
         setIsLoading(false);
     }
   }
@@ -114,7 +139,11 @@ export default function Connect() {
                 />
                 </div>
 
-                <div className="flex justify-end">
+                <div className="flex sm:flex-row flex-col justify-end items-end gap-3 items-center">
+                    {
+                        isSuccess &&
+                            <p className="text-sm text-emerald-600 sm:order-1 order-2">Thank you for your message! I'll get back to you soon.</p>
+                    }
                     <button
                     type="submit"
                     className="mt-1 w-32 rounded-xl bg-emerald-600 py-3 text-sm font-semibold text-white transition-[background-color,transform] hover:bg-emerald-700 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
