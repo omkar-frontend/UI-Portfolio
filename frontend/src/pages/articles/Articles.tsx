@@ -29,9 +29,7 @@ export default function Articles() {
                         <div className="flex flex-col gap-1 group" onClick={() => window.open(article.link, "_blank")} data-cursor="pointer">
                             <HoverTitle
                                 title={article.title}
-                                fontSize="text-lg"
-                                textColor="#000000"
-                                arrowColor="#000000"
+                                titleClassName="text-lg font-semibold"
                                 className="justify-end text-nowrap"
                             />
                             <div className="p-5 bg-black/5 rounded-2xl">

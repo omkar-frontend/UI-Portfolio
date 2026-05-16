@@ -51,10 +51,9 @@ export default function Projects() {
                     <div className="flex flex-col">
                         <HoverTitle
                             title={project.name}
-                            fontSize="text-xl"
-                            textColor="#000000"
-                            arrowColor="#000000"
                             className="justify-end"
+                            titleClassName="text-xl font-semibold"
+                            arrowClassName="text-black"
                         />
                         <img src={project.image} alt={project.name} className="w-full h-60 object-cover border border-black/10 rounded-2xl" />
                     </div>

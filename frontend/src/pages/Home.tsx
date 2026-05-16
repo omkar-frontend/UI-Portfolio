@@ -15,6 +15,7 @@ import Projects from "./projects/Projects";
 import Designs from "./designs/Designs";
 import Articles from "./articles/Articles";
 import Connect from "./connect/Connect";
+import HoverTitle from "../components/HoverTitle";
 
 // import TicTacToe from "../components/TicTacToe";
 // import IllustartorLogo from "../assets/logo/illlu.svg";
@@ -120,7 +121,7 @@ export default function Home() {
   return (
     <>
       <main className="min-h-screen bg-bg text-text lg:px-40 p-5 grid grid-cols-1 gap-16">
-          <div className="grid md:grid-cols-2 grid-cols-1 gap-10 min-h-[calc(70vh)]">
+          <div className="grid md:grid-cols-2 grid-cols-1 gap-10 min-h-[calc(70vh)] scroll-mt-20" id="home">
             {/* Name, Title & Summary */}
             <div className="h-full flex items-center justify-center">
               <div className="flex flex-col items-start gap-3">
@@ -156,9 +157,9 @@ export default function Home() {
                     recentWork.map((work) => (
                       <div key={work.key} data-cursor="pointer" className="flex items-center p-3 border border-black/10 rounded-xl 
                       justify-between gap-3 w-full cursor-pointer hover:border-emerald-600 
-                      transition-colors duration-500" onClick={() => window.open(work.link, "_blank")}>
+                      transition-colors duration-500 group" onClick={() => window.open(work.link, "_blank")}>
                         <p className="text-sm font-medium">{work.name}</p>
-                        <p className="text-xs text-black/50">{work.type}</p>
+                        <HoverTitle title={work.type} titleClassName="text-xs font-normal text-text/50" arrowClassName="text-text/50" />
                       </div>
                     ))
                   }

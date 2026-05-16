@@ -9,6 +9,7 @@ export default function CustomCursor() {
   const frame = useRef<number>(0);
   const [visible, setVisible] = useState(false);
   const [interactive, setInteractive] = useState(false);
+  const [textMode, setTextMode] = useState(false);
 
   useEffect(() => {
     const coarse = window.matchMedia("(pointer: coarse)").matches;
@@ -21,9 +22,16 @@ export default function CustomCursor() {
       setVisible(true);
 
       const el = document.elementFromPoint(e.clientX, e.clientY);
-      const isInteractive = Boolean(
-        el?.closest("a, button, [role='button'], input, textarea, select, label, [data-cursor='pointer']")
+      const isText = Boolean(
+        el?.closest(
+          "textarea, [contenteditable='true'], input:not([type='button']):not([type='submit']):not([type='reset']):not([type='checkbox']):not([type='radio']):not([type='file']):not([type='image']):not([type='hidden'])"
+        )
       );
+      const isInteractive = Boolean(
+        !isText &&
+          el?.closest("a, button, [role='button'], select, label, [data-cursor='pointer']")
+      );
+      setTextMode(isText);
       setInteractive(isInteractive);
     };
 
@@ -56,7 +64,7 @@ export default function CustomCursor() {
     <div
       ref={cursorRef}
       aria-hidden
-      className={`custom-cursor ${visible ? "custom-cursor--visible" : ""} ${interactive ? "custom-cursor--interactive" : ""}`}
+      className={`custom-cursor ${visible ? "custom-cursor--visible" : ""} ${interactive ? "custom-cursor--interactive" : ""} ${textMode ? "custom-cursor--text" : ""}`}
     >
       <svg
         className="custom-cursor__pointer"
@@ -71,6 +79,23 @@ export default function CustomCursor() {
           fill="currentColor"
           stroke="white"
           strokeWidth="1.2"
+          strokeLinejoin="round"
+        />
+      </svg>
+      <svg
+        className="custom-cursor__text"
+        width="12"
+        height="20"
+        viewBox="0 0 12 20"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden
+      >
+        <path
+          d="M5 3h2v14H5V3ZM2 3h8v2H2V3ZM2 15h8v2H2v-2Z"
+          fill="currentColor"
+          stroke="white"
+          strokeWidth="1"
           strokeLinejoin="round"
         />
       </svg>

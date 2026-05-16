@@ -57,9 +57,8 @@ export default function Designs() {
                             <div className="flex flex-col justify-end items-end gap-1">
                                 <HoverTitle
                                     title={design.name}
-                                    fontSize="text-xl"
-                                    textColor={designColors[design.key].text}
-                                    arrowColor={designColors[design.key].text}
+                                    titleClassName="text-xl font-semibold text-white"
+                                    arrowClassName="text-white"
                                 />
                                 <img src={design.image} alt={design.name} className="w-full sm:h-full h-52 sm:object-contain object-cover border border-black/10 rounded-2xl" />
                             </div>
