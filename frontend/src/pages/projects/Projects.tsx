@@ -24,7 +24,7 @@ const projects: Project[] = [
     {
         key: "shieldX",
         name: "ShieldX",
-        description: "Developed a full-stack password manager with React 19, TypeScript, and Supabase, implementing JWT-based authentication, user-scoped access control, and client-side AES-GCM encryption with PBKDF2 key derivation (100k iterations). Built vault CRUD operations with reveal/hide and lock/unlock flows, maintaining security separation between authentication, API access, and browserbased decryption with session-scoped keys.",
+        description: "Developed a full-stack password manager with React 19, TypeScript, and Supabase, implementing JWT-based authentication, user-scoped access control, and client-side AES-GCM encryption with PBKDF2 key derivation. Built vault CRUD operations with reveal/hide and lock/unlock flows, maintaining security separation between authentication, API access, and browserbased decryption with session-scoped keys.",
         image: ShieldX,
         link: "https://shieldx-protect.vercel.app/login",
         techStack: ["React", "TypeScript", "Express", "REST API", "Supabase", "Web Crypto", "Tailwind CSS"],
