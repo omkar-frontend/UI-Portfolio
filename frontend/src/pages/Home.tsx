@@ -16,6 +16,7 @@ import Designs from "./designs/Designs";
 import Articles from "./articles/Articles";
 import Connect from "./connect/Connect";
 import HoverTitle from "../components/HoverTitle";
+import { downloadCv } from "../constants/cv";
 
 // import TicTacToe from "../components/TicTacToe";
 // import IllustartorLogo from "../assets/logo/illlu.svg";
@@ -143,6 +144,16 @@ export default function Home() {
                       <p className="text-xs">{tech.name}</p>
                     </div>
                   ))}
+                </div>
+                {/* View CV */}
+                <div className="flex items-center gap-2 mt-4">
+                  <button
+                    type="button"
+                    onClick={downloadCv}
+                    className="px-4 py-2 rounded-lg text-neutral-700 text-xs bg-black/10 font-medium hover:bg-emerald-600 hover:text-white transition-colors duration-300"
+                  >
+                    View CV
+                  </button>
                 </div>
               </div>
             </div>
