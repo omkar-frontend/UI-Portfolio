@@ -108,7 +108,7 @@ const recentWork: RecentWork[] = [
     key: "ShieldX",
     name: "ShieldX",
     type: "Project",
-    link: "https://shieldx.vercel.app/"
+    link: "https://shieldx-protect.vercel.app/"
   },
   {
     key: "uiconsistency",
