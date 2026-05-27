@@ -40,6 +40,7 @@ html.custom-cursor-active * {
 }
 
 .custom-cursor__pointer,
+.custom-cursor__pointer-hand,
 .custom-cursor__text {
   color: #000;
   flex-shrink: 0;
@@ -48,6 +49,10 @@ html.custom-cursor-active * {
 
 .custom-cursor__pointer {
   margin-top: -1px;
+}
+
+.custom-cursor__pointer-hand {
+  display: none;
 }
 
 .custom-cursor__text {
@@ -70,6 +75,11 @@ html.custom-cursor-active * {
 }
 
 .custom-cursor--interactive .custom-cursor__pointer {
+  display: none;
+}
+
+.custom-cursor--interactive .custom-cursor__pointer-hand {
+  display: block;
   color: #059669;
   transform: scale(1.1);
 }
@@ -79,7 +89,8 @@ html.custom-cursor-active * {
   transform: scale(1.05);
 }
 
-.custom-cursor--text .custom-cursor__pointer {
+.custom-cursor--text .custom-cursor__pointer,
+.custom-cursor--text .custom-cursor__pointer-hand {
   display: none;
 }
 

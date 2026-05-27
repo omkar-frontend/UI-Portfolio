@@ -17,6 +17,7 @@ import Articles from "./articles/Articles";
 import Connect from "./connect/Connect";
 import HoverTitle from "../components/HoverTitle";
 import { downloadCv } from "../constants/cv";
+import GeminiLogo from "../assets/logo/gemini.svg";
 
 // import TicTacToe from "../components/TicTacToe";
 // import IllustartorLogo from "../assets/logo/illlu.svg";
@@ -34,14 +35,14 @@ const techStack: TechStack[] = [
     icon: JavaScriptLogo,
   },
   {
-    key: "typescript",
-    name: "TypeScript",
-    icon: TypeScriptLogo,
-  },
-  {
     key: "react",
     name: "React",
     icon: ReactLogo,
+  },
+  {
+    key: "typescript",
+    name: "TypeScript",
+    icon: TypeScriptLogo,
   },
   {
     key: "redux",
@@ -88,6 +89,11 @@ const techStack: TechStack[] = [
     name: "Supabase",
     icon: SupabaseLogo,
   },
+  {
+    key: "gemini",
+    name: "Gemini",
+    icon: GeminiLogo,
+  }
 ]
 
 type RecentWork = {
