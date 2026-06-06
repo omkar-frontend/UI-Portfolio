@@ -3,13 +3,15 @@ import JobsBoard from "../../assets/images/jobsBoard.png"
 import ShieldX from "../../assets/images/shieldx.png"
 import { techStack } from "../../constants/techStack";
 
+type TechStackKey = keyof typeof techStack;
+
 type Project = {
     key: string;
     name: string;
     description: string;
     image: string;
     link: string;
-    techStack: string[];
+    techStack: TechStackKey[];
 }
 
 const projects: Project[] = [
@@ -62,8 +64,8 @@ export default function Projects() {
                         <p className="text-sm text-text/70 w-full">{project.description}</p>
                         <div className="flex flex-wrap gap-3">
                         {
-                            project.techStack.map((tech: any) => (
-                                <div key={tech?.key} className="flex items-center gap-1 border border-emerald-600 bg-white rounded-full px-2 py-1">
+                            project.techStack.map((tech) => (
+                                <div key={tech} className="flex items-center gap-1 border border-emerald-600 bg-white rounded-full px-2 py-1">
                                     <img src={techStack[tech]?.icon} alt={techStack[tech]?.label} className="w-4 h-4" />
                                     <p className="text-xs text-text/70">{techStack[tech]?.label}</p>
                                 </div>
