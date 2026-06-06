@@ -11,6 +11,7 @@ export default function CustomCursor() {
   const [visible, setVisible] = useState(false);
   const [interactive, setInteractive] = useState(false);
   const [textMode, setTextMode] = useState(false);
+  const [disabledMode, setDisabledMode] = useState(false);
 
   useEffect(() => {
     const coarse = window.matchMedia("(pointer: coarse)").matches;
@@ -25,11 +26,18 @@ export default function CustomCursor() {
           "textarea, [contenteditable='true'], input:not([type='button']):not([type='submit']):not([type='reset']):not([type='checkbox']):not([type='radio']):not([type='file']):not([type='image']):not([type='hidden'])"
         )
       );
+      const isDisabled = Boolean(
+        el?.closest(
+          "button:disabled, input:disabled, select:disabled, textarea:disabled, fieldset:disabled button, fieldset:disabled input, fieldset:disabled select, fieldset:disabled textarea, [aria-disabled='true']"
+        )
+      );
       const isInteractive = Boolean(
         !isText &&
+          !isDisabled &&
           el?.closest("a, button, [role='button'], select, label, [data-cursor='pointer']")
       );
       setTextMode(isText);
+      setDisabledMode(isDisabled);
       setInteractive(isInteractive);
     };
 
@@ -80,7 +88,7 @@ export default function CustomCursor() {
     <div
       ref={cursorRef}
       aria-hidden
-      className={`custom-cursor ${visible ? "custom-cursor--visible" : ""} ${interactive ? "custom-cursor--interactive" : ""} ${textMode ? "custom-cursor--text" : ""}`}
+      className={`custom-cursor ${visible ? "custom-cursor--visible" : ""} ${interactive ? "custom-cursor--interactive" : ""} ${textMode ? "custom-cursor--text" : ""} ${disabledMode ? "custom-cursor--disabled" : ""}`}
     >
       <svg
         className="custom-cursor__pointer"
@@ -124,6 +132,18 @@ export default function CustomCursor() {
           strokeWidth="1"
           strokeLinejoin="round"
         />
+      </svg>
+      <svg
+        className="custom-cursor__disabled"
+        width="18"
+        height="18"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden
+      >
+        <circle cx="12" cy="12" r="9" fill="white" stroke="currentColor" strokeWidth="1.5" />
+        <path d="M7.5 7.5L16.5 16.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
       </svg>
       {/* <p className="custom-cursor__label">Omkar</p> */}
     </div>
