@@ -1,16 +1,22 @@
 import HoverTitle from "../../components/HoverTitle";
 import UIComponents from "../../assets/images/components.png";
 import Dashboard from "../../assets/images/dashboard.png";
+import ChatAppUI from "../../assets/images/chat-app-ui.png";
 
 const designColors = {
     design1: {
-        bg: "#008236",
-        text: "#FFFFFF",
+        bg: "#31572c",
+        text: "#cee8ca",
         border: "#FFFFFF",
     },
     design2: {
-        bg: "#f54a00",
-        text: "#FFFFFF",
+        bg: "#1b263b",
+        text: "#ccd8eb",
+        border: "#FFFFFF",
+    },
+    design3: {
+        bg: "#ad2831",
+        text: "#f8d5d3",
         border: "#FFFFFF",
     },
 } as const;
@@ -40,6 +46,14 @@ const designs: Design[] = [
         image: Dashboard,
         link: "https://www.figma.com/proto/fNaQkhJlB3tpBOInyLIgx0/Dashboards?node-id=1-2&t=O4qiwBoKtITIoszf-1",
     },
+    {
+        key: "design3",
+        name: "Chat App UI",
+        description: "Designed a sleek and user-friendly chat application interface with a focus on intuitive navigation, real-time conversations, responsive design, and an engaging messaging experience.",
+        image: ChatAppUI,
+        link: "https://www.figma.com/make/BDadOVHWd5Zq65jYYyPUGH/Chat-application-UI?fullscreen=1&t=kGstREqxGbaCsSeR-1&code-node-id=0-6",
+    },
+
 ];
 
 export default function Designs() {
